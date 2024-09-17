@@ -8,13 +8,13 @@ Init docker
 
 ## Índice
 
-1. [Introducción](#introducción)
-2. [Instalaciones](#instalaciones)
-3. [Conceptos Fundamentales](#conceptos-fundamentales)
-4. [Flujo de Trabajo en Docker](#flujo-de-trabajo-en-docker)
-5. [Comandos Esenciales](#comandos-esenciales)
-6. [Ejemplo Completo: Proyecto Python](#ejemplo-con-python)
-7. [Recursos Adicionales](#recursos-adicionales)
+1. [Introducción](#1-introducción)
+2. [Instalaciones](#2-instalaciones)
+3. [Conceptos Fundamentales](#3-conceptos-fundamentales)
+4. [Flujo de Trabajo en Docker](#4-flujo-de-trabajo-en-docker)
+5. [Comandos Esenciales](#5-comandos-esenciales)
+6. [Ejemplo Completo: Proyecto Python](#6-ejemplo-con-python)
+7. [Recursos Adicionales](#7-recursos-adicionales)
 
 ---
 
@@ -47,19 +47,19 @@ Init docker
 
 - **Problemas comunes al instalar Docker en procesadores antiguos** Algunos usuarios pueden experimentar problemas al instalar Docker en máquinas con procesadores **AMD** o **Intel** antiguos, ya que Docker depende de la virtualización para funcionar. Es importante verificar que tu procesador tenga **soporte para virtualización** (VT-x en Intel o AMD-V en AMD) y que esté habilitado en la BIOS.
 
-            En equipos Windows, asegúrate de que Hyper-V esté activado, ya que Docker Desktop utiliza esta tecnología para crear contenedores.
+               En equipos Windows, asegúrate de que Hyper-V esté activado, ya que Docker Desktop utiliza esta tecnología para crear contenedores.
 
-            En macOS, Docker utiliza el **Apple Hypervisor Framework**.
+               En macOS, Docker utiliza el **Apple Hypervisor Framework**.
 
 - **Considera la arquitectura de tu procesador** Las arquitecturas `amd64` y `arm64` se refieren a diferentes conjuntos de instrucciones que los procesadores utilizan para ejecutar programas.
 
-            amd64 (x86-64):  Desarrollada por AMD, pero basada en la arquitectura x86 de Intel. Es la más común en PCs y servidores.
+               amd64 (x86-64):  Desarrollada por AMD, pero basada en la arquitectura x86 de Intel. Es la más común en PCs y servidores.
 
-            arm64 (ARMv8-A o AArch64):  Desarrollada por ARM Holdings, se utiliza en dispositivos móviles y servidores. Es más eficiente y multinúcleo. Es popular en dispositivos como Raspberry Pi Apple M1/M2, y en la nube con AWS Graviton.
+               arm64 (ARMv8-A o AArch64):  Desarrollada por ARM Holdings, se utiliza en dispositivos móviles y servidores. Es más eficiente y multinúcleo. Es popular en dispositivos como Raspberry Pi Apple M1/M2, y en la nube con AWS Graviton.
 
-            Las imágenes de Docker se crean y optimizan para una arquitectura específica. Esto significa que una imagen creada para amd64 (procesadores Intel y AMD de 64 bits) no se puede ejecutar de forma nativa en arm64 (procesadores ARM).  Comando para construir una imagen multiarquitectura:
+               Las imágenes de Docker se crean y optimizan para una arquitectura específica. Esto significa que una imagen creada para amd64 (procesadores Intel y AMD de 64 bits) no se puede ejecutar de forma nativa en arm64 (procesadores ARM).  Comando para construir una imagen multiarquitectura:
 
-            docker buildx build --platform linux/amd64,linux/arm64 -t mi-imagen:latest .
+               docker buildx build --platform linux/amd64,linux/arm64 -t mi-imagen:latest .
 
 🚨 🚨 ¿Teneis instalado el programa? ¿Si escribís docker en el terminal responde? ¿Tenéis la cuenta en docker hub? 🚨 🚨
 
@@ -117,7 +117,7 @@ Este comando ejecuta el contenedor en segundo plano (-d), asigna el nombre mi-co
 
 🚨 🚨 ¿Podemos explicar el flujo de trabajo con Docker? 🚨 🚨
 
-## 5. Comandos
+## 5. Comandos esenciales
 
 Listado de comandos importantes para gestionar contenedores, imágenes y recursos en Docker:
 
