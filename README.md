@@ -1,11 +1,5 @@
 # Docker
 
-Init docker
-
-<kbd>
-  <img src="./img/memedocker.png" style="width: 100%; border:1px solid grey"">
-</kbd>
-
 ## Índice
 
 1. [Introducción](#1-introducción)
@@ -29,6 +23,10 @@ Init docker
 👨‍💻 Solomon Hykes quería que el código de los programadores funcionara igual en desarrollo y producción. Docker hizo que los contenedores fueran fáciles de usar, aunque ya existían en Linux. Aunque lanzaron Docker gratis y fue popular, la empresa tuvo problemas para ganar dinero y terminó vendiendo parte de su negocio en 2020.
 
 💻 Antes de Docker, las máquinas virtuales (VMs) eran la opción para aislar aplicaciones. Las VMs emulan un sistema operativo completo, lo que las hace más pesadas y lentas. Además, ocupan más espacio y consumen más recursos que Docker, lo que dificulta la escalabilidad y el rendimiento.
+
+<kbd>
+  <img src="./img/memedocker.png" style="width: 100%; border:1px solid grey"">
+</kbd>
 
 🚨 ¿Entendemos para qué sirve? ¿Qué puede pasar en el caso de no usar? ¿Qué se usaba antes? 🚨
 
