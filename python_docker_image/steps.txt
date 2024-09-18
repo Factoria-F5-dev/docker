@@ -1,0 +1,7 @@
+step OSX:
+
+docker build -t python_docker_image .
+docker run --name python_docker_container -d python_docker_image tail -f /dev/null
+docker ps
+docker exec -it python_docker_container python test.py
+docker exec -it python_docker_container python predict.py
