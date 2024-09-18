@@ -45,19 +45,19 @@
 
 - **Problemas comunes al instalar Docker en procesadores antiguos** Algunos usuarios pueden experimentar problemas al instalar Docker en máquinas con procesadores **AMD** o **Intel** antiguos, ya que Docker depende de la virtualización para funcionar. Es importante verificar que tu procesador tenga **soporte para virtualización** (VT-x en Intel o AMD-V en AMD) y que esté habilitado en la BIOS.
 
-               En equipos Windows, asegúrate de que Hyper-V esté activado, ya que Docker Desktop utiliza esta tecnología para crear contenedores.
+                  En equipos Windows, asegúrate de que Hyper-V esté activado, ya que Docker Desktop utiliza esta tecnología para crear contenedores.
 
-               En macOS, Docker utiliza el **Apple Hypervisor Framework**.
+                  En macOS, Docker utiliza el **Apple Hypervisor Framework**.
 
 - **Considera la arquitectura de tu procesador** Las arquitecturas `amd64` y `arm64` se refieren a diferentes conjuntos de instrucciones que los procesadores utilizan para ejecutar programas.
 
-               amd64 (x86-64):  Desarrollada por AMD, pero basada en la arquitectura x86 de Intel. Es la más común en PCs y servidores.
+                  amd64 (x86-64):  Desarrollada por AMD, pero basada en la arquitectura x86 de Intel. Es la más común en PCs y servidores.
 
-               arm64 (ARMv8-A o AArch64):  Desarrollada por ARM Holdings, se utiliza en dispositivos móviles y servidores. Es más eficiente y multinúcleo. Es popular en dispositivos como Raspberry Pi Apple M1/M2, y en la nube con AWS Graviton.
+                  arm64 (ARMv8-A o AArch64):  Desarrollada por ARM Holdings, se utiliza en dispositivos móviles y servidores. Es más eficiente y multinúcleo. Es popular en dispositivos como Raspberry Pi Apple M1/M2, y en la nube con AWS Graviton.
 
-               Las imágenes de Docker se crean y optimizan para una arquitectura específica. Esto significa que una imagen creada para amd64 (procesadores Intel y AMD de 64 bits) no se puede ejecutar de forma nativa en arm64 (procesadores ARM).  Comando para construir una imagen multiarquitectura:
+                  Las imágenes de Docker se crean y optimizan para una arquitectura específica. Esto significa que una imagen creada para amd64 (procesadores Intel y AMD de 64 bits) no se puede ejecutar de forma nativa en arm64 (procesadores ARM).  Comando para construir una imagen multiarquitectura:
 
-               docker buildx build --platform linux/amd64,linux/arm64 -t mi-imagen:latest .
+                  docker buildx build --platform linux/amd64,linux/arm64 -t mi-imagen:latest .
 
 🚨 🚨 ¿Teneis instalado el programa? ¿Si escribís docker en el terminal responde? ¿Tenéis la cuenta en docker hub? 🚨 🚨
 
@@ -97,7 +97,7 @@ Ejemplo básico de un Dockerfile:
 
       docker build -t mi-aplicacion:latest .
 
-### 4.2 Configurar variables de entorno
+### 4.2 Configurar variables en el Dockerfile de forma sencilla
 
 Durante la ejecución de un contenedor, puedes pasar variables de entorno para personalizar la configuración sin modificar el código. Puedes definir variables directamente en el Dockerfile o pasar valores al momento de ejecutar el contenedor.
 
@@ -107,23 +107,66 @@ Durante la ejecución de un contenedor, puedes pasar variables de entorno para p
       # O pasarla en momento de ejecución
       docker run -e API_KEY=myapikey mi-aplicacion
 
-### 4.3 Ejecutar contenedor
+📌 Importante diferenciar entre ARG y ENV. ARG define variables que se pasan en tiempo de construcción. ENV define variables que se usan en tiempo de ejecución dentro del contenedor.
+
+    ARG BUILD_ENV=development
+    ENV APP_ENV=${BUILD_ENV}
+    RUN echo "Building for environment: ${APP_ENV}``
+
+### 4.3 Ejecutar un contenedor
 
       docker run -d --name mi-contenedor -p 8080:80 mi-aplicacion
 
 Este comando ejecuta el contenedor en segundo plano (-d), asigna el nombre mi-contenedor, y mapea el puerto 80 del contenedor al puerto 8080 del host (-p 8080:80).
 
-🚨 🚨 ¿Podemos explicar el flujo de trabajo con Docker? 🚨 🚨
+### 4.4 Ejecutar varios contenedores a la vez
+
+En Docker Compose, un servicio es una definición que describe un contenedor que deseas ejecutar. Cada servicio corresponde a un contenedor, y en el archivo docker-compose.yaml, puedes definir varios servicios para que trabajen juntos como parte de una aplicación más grande
+
+Cuando ejecutas `docker-compose up`, Docker Compose realiza las siguientes tareas: Crea y ejecuta los contenedores para cada servicio, Asigna una red. Monta volúmenes y expone puertos.
+
+Ejemplo de Docker compose:
+
+    services:
+      app:
+        image: mi-aplicacion:latest
+          - "8080:8080"
+        depends_on:
+          - db  # 'app' depende del servicio 'db'
+      db:
+        image: postgres:13  # Este servicio es la base de datos
+        environment:
+          - POSTGRES_USER=user
+          - POSTGRES_PASSWORD=secret
+          - POSTGRES_DB=mi_bd
+
+📌 Importante recordar que docker-compose puede acceder al .env
+
+🚨 🚨 ¿Podemos explicar el flujo de trabajo con Docker? ¿Diferenciamos entre ARG y ENV? ¿Entendemos la función de docker-compose? 🚨 🚨
 
 ## 5. Comandos esenciales
 
-Listado de comandos importantes para gestionar contenedores, imágenes y recursos en Docker:
+- **`docker --version`**: Verifica la versión de Docker instalada.
+- **`docker pull <imagen>`**: Descarga una imagen de Docker del repositorio de Docker Hub.
+- **`docker push <imagen>`**: Sube una imagen a un registro (registry).
+- **`docker images`**: Lista todas las imágenes descargadas en tu máquina.
+- **`docker run <imagen>`**: Ejecuta un contenedor a partir de una imagen.
+- **`docker ps`**: Muestra todos los contenedores en ejecución.
+- **`docker ps -a`**: Muestra todos los contenedores, incluso los que no están en ejecución.
+- **`docker stop <id-contenedor>`**: Detiene un contenedor en ejecución.
+- **`docker start <id-contenedor>`**: Inicia un contenedor que ha sido detenido.
+- **`docker rm <id-contenedor>`**: Elimina un contenedor detenido.
+- **`docker rmi <imagen>`**: Elimina una imagen de Docker.
+- **`docker build -t <nombre>:<tag> <directorio>`**: Construye una imagen a partir de un Dockerfile.
+- **`docker exec -it <id-contenedor> <comando>`**: Ejecuta un comando dentro de un contenedor en ejecución.
+- **`docker logs <id-contenedor>`**: Muestra los logs de un contenedor.
+- **`docker-compose up`**: Inicia los contenedores definidos en un archivo `docker-compose.yml`.
+- **`docker-compose down`**: Detiene y elimina los contenedores definidos en `docker-compose.yml`.
+- **`docker inspect <id-contenedor>`**: Muestra detalles de un contenedor o una imagen.
+- **`docker stats`**: Muestra el uso de recursos de los contenedores en ejecución.
+- **`docker prune`**: Elimina imágenes no utilizadas.
 
-A diferencia de docker run, docker start no crea un contenedor nuevo, simplemente reanuda la ejecución de uno existente que había sido detenido.
-
-Docker proporciona comandos para limpiar contenedores e imágenes no utilizados. Si deseas eliminar todos los contenedores detenidos y liberar espacio, puedes usar: docker system prune
-
-etc.
+🚨 🚨 ¿Me suenan los comandos esenciales? 🚨 🚨
 
 ## 6. Ejemplo con Python
 
