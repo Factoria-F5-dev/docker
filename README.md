@@ -175,10 +175,11 @@ Un ejemplo práctico de cómo crear, configurar y desplegar un contenedor de Doc
 
 ## 7. Despliegue en producción
 
-- Subes tu imagen a Docker hub etiquetada correctamente. Ejemplo: `docker tag frontcm-server:latest signados/frontcm-server:latest`
+- Haces login con `docker login`
+- Subes tu imagen a Docker hub etiquetada correctamente. Ejemplo: `docker tag nombre-de-tag:latest tu-username/nombre-de-imagen:latest`
 - Te creas tu cuenta en Render
 - Creas un nuevo servico web con Docker
-- Despliegas tu imagen
+- Despliegas tu imagen `docker image push tu-username/nombre-de-tag`
 
 <kbd><img src="./img/renderdocker.png" style="border:1px solid grey"></kbd>
 
