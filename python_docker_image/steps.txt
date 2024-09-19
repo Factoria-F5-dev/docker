@@ -1,7 +1,12 @@
-step OSX:
+# Para interactuar:
 
 docker build -t python_docker_image .
-docker run --name python_docker_container -d python_docker_image tail -f /dev/null
-docker ps
-docker exec -it python_docker_container python test.py
+
+docker run -it --name python_docker_container python_docker_image
+
+# Si se suspende en OSX:
+
+docker start python_docker_container
+
 docker exec -it python_docker_container python predict.py
+docker exec python_docker_container python test.py
