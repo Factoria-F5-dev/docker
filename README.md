@@ -60,7 +60,7 @@
 
       docker buildx build --platform linux/amd64,linux/arm64 -t mi-imagen:latest .
 
-🚨 🚨 ¿Teneis instalado el programa? ¿Si escribís docker en el terminal responde? ¿Tenéis la cuenta en docker hub? 🚨 🚨
+🚨 🚨 ¿Entendéis lo que necesitamos? ¿Entendís el problema de la arquitectura de tu procesador?  🚨 🚨
 
 ## 3. Conceptos fundamentales
 
@@ -86,13 +86,15 @@ El flujo de trabajo en Docker sigue varios pasos clave que van desde la creació
 
 ### 4.1. Creación del Dockerfile
 
+Se puede hacer con `docker init` te detecta el code que tienes
+
 Ejemplo básico de un Dockerfile:
 
-      FROM python:3.8-slim
-      COPY . /app
-      WORKDIR /app
-      RUN pip install -r requirements.txt
-      CMD ["python", "app.py"]
+      FROM python:3.8-slim # Instalamos una imagen
+      COPY . /app # Copiamos un directorio
+      WORKDIR /app # Creamos un directorio
+      RUN pip install -r requirements.txt # Instalamos
+      CMD ["python", "app.py"] # Ejecutamos
 
 ### 4.1. Construcción de la Imagen
 
@@ -171,7 +173,7 @@ Ejemplo de Docker compose:
 
 ## 6. Ejemplo con Python
 
-Un ejemplo práctico de cómo crear, configurar y desplegar un contenedor de Docker para un proyecto en Python.
+Nos ponemos a hacer instalaciones y un ejemplo práctico de cómo crear, configurar y desplegar un contenedor de Docker para un proyecto en Python.
 
 ## 7. Despliegue en producción
 
