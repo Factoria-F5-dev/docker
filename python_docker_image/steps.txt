@@ -4,6 +4,13 @@ docker build -t python_docker_image .
 
 docker run -it --name python_docker_container python_docker_image
 
+#Para subir una imagen a DockerHub
+
+docker login
+docker tag <nombre_imagen> <nombre_usuario>/<nombre_repo>:<nombre_etiqueta>
+docker push <nombre_usuario>/<nombre_repo>:<nombre/tag>
+ejemplo: docker tag nodejs-webapp pepe/nodejs-webapp:v1 
+
 # Si se suspende en OSX:
 
 docker start python_docker_container
