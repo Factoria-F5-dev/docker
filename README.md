@@ -200,6 +200,11 @@ En este apartado vamos a transformar un proyecto nodejs full-stack en una única
 <details>
   <summary>Guía paso a paso de instalación</summary>
 
+Puedes `clonar los repositorios` para el ejercicio desde los siguientes enlaces:
+
+- [animal-api](https://github.com/amargopastor-codealong/animal-api)
+- [animal-front](https://github.com/amargopastor-codealong/animal-front)
+
 1. Ejecuta el comando `npm install` para ambos proyectos
 2. Recuerda que `animal-api` necesita un fichero `.env para la variable PORT`
 3. Familiarizate con ambos proyectos
