@@ -90,7 +90,16 @@ Entre las funciones de Docker Desktop está construir imágenes Docker desde un 
 
 📦 **Contenedores**: Un contenedor es una instancia en ejecución de una imagen. Es el entorno aislado en el que se ejecuta la aplicación. Cada contenedor tiene su propio sistema de archivos, procesos, redes y espacio de CPU/memoria. Piensa en el contenedor como una "caja" donde vive y se ejecuta la aplicación, separada del resto del sistema.
 
-💾 Volúmenes: Los volúmenes en Docker se utilizan para persistir datos más allá del ciclo de vida de los contenedores, los cuales son efímeros y pueden ser eliminados fácilmente. Los volúmenes permiten que los datos persistan incluso después de que el contenedor haya sido destruido. Además, también se pueden utilizar para mapear código entre el sistema anfitrión y el contenedor, lo que facilita la edición en tiempo real dentro del contenedor.
+> [!WARNING]
+> Es habitual que se confundan los términos de imágen y contenedor e incluso usarse únicamente el término contenedor para hacer referencia a ambos. Pero la realidad es que nunca se puede construir un contenedor o descargar uno, ya que los contenedores solo existen durante el tiempo de ejecución. Las imágenes, por otro lado, son archivos inmutables: no puedes editar una imagen después de haberla creado.
+>
+> 🚨 🚨 **Metáfora de la cocina** 🚨 🚨
+>
+> La `imagen` es un plato pre-cocinado y congelado.
+>
+> El `contenedor` es el delicioso manjar.
+
+💾 **Volúmenes**: Los volúmenes en Docker se utilizan para persistir datos más allá del ciclo de vida de los contenedores, los cuales son efímeros y pueden ser eliminados fácilmente. Los volúmenes permiten que los datos persistan incluso después de que el contenedor haya sido destruido. Además, también se pueden utilizar para mapear código entre el sistema anfitrión y el contenedor, lo que facilita la edición en tiempo real dentro del contenedor.
 
 📜 **Docker Compose**: Docker Compose es una herramienta que permite definir y ejecutar aplicaciones multicontenedor. Se utiliza un archivo `docker-compose.yml` para configurar los servicios de una aplicación, como bases de datos, servidores, etc., y luego se ejecutan con un solo comando.
 
@@ -315,7 +324,7 @@ docker run --env-file .env -p 3001:3001 my-node-app
 _easy peasy_
 
 ```bash
-docker run -p 3000:3000 -e PORT=3000 my-node-app
+docker run -p 3001:3001 -e PORT=3000 my-node-app
 ```
 
 ### 6.6 Crear un volumen para node_modules (opcional)
