@@ -1,3 +1,5 @@
+<kbd><img src="./img/contenedores.jpg" style="border:1px solid grey"></kbd>
+
 # Docker
 
 ## Índice
