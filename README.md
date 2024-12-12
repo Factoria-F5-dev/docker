@@ -56,9 +56,9 @@ Entre las funciones de Docker Desktop está construir imágenes Docker desde un 
 
 - **[Docker Hub](https://hub.docker.com/)**: Es el repositorio oficial donde se almacenan y comparten imágenes de Docker. Los usuarios pueden descargar imágenes públicas o almacenar las suyas propias. Es un recurso clave para obtener imágenes oficiales de sistemas operativos, aplicaciones y servicios. Su función es similar a un repositorio de código como GitHub o GitLab. Docker Hub nos permite:
 
-- Almacenar y compartir imágenes Docker públicamente o de manera privada.
-- Distribuir tus imágenes a otras personas o sistemas (en un entorno de producción, CI/CD, etc.)
-- Descargar imágenes preconstruidas de aplicaciones populares (Nginx, Redis, MongoDB, Node.js, etc.), que puedes usar como base para tus propios contenedores
+-- Almacenar y compartir imágenes Docker públicamente o de manera privada.
+-- Distribuir tus imágenes a otras personas o sistemas (en un entorno de producción, CI/CD, etc.)
+-- Descargar imágenes preconstruidas de aplicaciones populares (Nginx, Redis, MongoDB, Node.js, etc.), que puedes usar como base para tus propios contenedores
 
 <kbd><img src="https://jorgebenitezlopez.com/github/dockerhub.png" style="border:1px solid grey"></kbd>
 
@@ -93,13 +93,15 @@ Entre las funciones de Docker Desktop está construir imágenes Docker desde un 
 📦 **Contenedores**: Un contenedor es una instancia en ejecución de una imagen. Es el entorno aislado en el que se ejecuta la aplicación. Cada contenedor tiene su propio sistema de archivos, procesos, redes y espacio de CPU/memoria. Piensa en el contenedor como una "caja" donde vive y se ejecuta la aplicación, separada del resto del sistema.
 
 > [!WARNING]
-> Es habitual que se confundan los términos de imágen y contenedor e incluso usarse únicamente el término contenedor para hacer referencia a ambos. Pero la realidad es que nunca se puede construir un contenedor o descargar uno, ya que los contenedores solo existen durante el tiempo de ejecución. Las imágenes, por otro lado, son archivos inmutables: no puedes editar una imagen después de haberla creado.
+> Es habitual que se confundan los términos de imágen y contenedor e incluso usarse únicamente el término contenedor para hacer referencia a ambos. Pero la realidad es que nunca se puede construir un contenedor o descargar uno, ya que los contenedores solo existen durante el tiempo de ejecución. Las imágenes, por otro lado, son archivos inmutables: no puedes editar una imagen después de haberla creado. 
 >
 > 🚨 🚨 **Metáfora de la cocina** 🚨 🚨
 >
 > La `imagen` es un plato pre-cocinado y congelado.
 >
 > El `contenedor` es el delicioso manjar.
+
+🚨 🚨 ¿Si lo relacionamos con POO, qué sería una clase y qué sería un objeto? 🚨 🚨
 
 💾 **Volúmenes**: Los volúmenes en Docker se utilizan para persistir datos más allá del ciclo de vida de los contenedores, los cuales son efímeros y pueden ser eliminados fácilmente. Los volúmenes permiten que los datos persistan incluso después de que el contenedor haya sido destruido. Además, también se pueden utilizar para mapear código entre el sistema anfitrión y el contenedor, lo que facilita la edición en tiempo real dentro del contenedor.
 
@@ -157,7 +159,7 @@ Este comando ejecuta el contenedor en segundo plano (-d), asigna el nombre mi-co
 
 En Docker Compose, un servicio es una definición que describe un contenedor que deseas ejecutar. Cada servicio corresponde a un contenedor, y en el archivo docker-compose.yaml, puedes definir varios servicios para que trabajen juntos como parte de una aplicación más grande
 
-Cuando ejecutas `docker-compose up`, Docker Compose realiza las siguientes tareas: Crea y ejecuta los contenedores para cada servicio, Asigna una red. Monta volúmenes y expone puertos.
+Cuando ejecutas `docker-compose up` o `docker compose up --build`, Docker Compose realiza las siguientes tareas: Crea y ejecuta los contenedores para cada servicio, Asigna una red. Monta volúmenes y expone puertos.
 
 Ejemplo de Docker compose:
 
