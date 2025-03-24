@@ -203,6 +203,7 @@ Ejemplo de Docker compose:
 
 - Haces login con `docker login`
 - Subes tu imagen a Docker hub etiquetada correctamente. Ejemplo: `docker tag nombre-de-tag:latest tu-username/nombre-de-imagen:latest`
+- [Trabajar con etiquetas](https://www.returngis.net/2019/02/publicar-tu-imagen-en-docker-hub/)
 
 <kbd><img src="./img/renderdocker.png" style="border:1px solid grey"></kbd>
 
